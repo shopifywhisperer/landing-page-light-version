@@ -82,7 +82,164 @@
       color: var(--muted);
     }
 
-    /* Layout helpers */
+    /* HERO – cinematic band */
+
+    .hero-shell {
+      position: relative;
+      margin: 40px 0 44px;
+      padding: 60px 0 70px;
+      border-bottom: 1px solid var(--border-subtle);
+      overflow: visible;
+    }
+
+    @media (min-width: 900px) {
+      .hero-shell {
+        margin: 56px 0 56px;
+        padding: 80px 0 86px;
+      }
+    }
+
+    /* full-width textured band behind hero */
+    .hero-shell::before {
+      content: "";
+      position: absolute;
+      top: -32px;
+      bottom: -32px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100vw;
+      background:
+        radial-gradient(circle at 10% 0,
+          rgba(199, 108, 118, 0.32),
+          transparent 55%)
+        ,
+        linear-gradient(
+          135deg,
+          #221816,
+          #342421
+        );
+      opacity: 0.96;
+      z-index: 0;
+    }
+
+    .hero {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+    }
+
+    .hero-inner {
+      max-width: 44rem;
+      margin: 0 auto;
+      padding: 0 8px;
+      color: #fdf6ee;
+    }
+
+    .hero-kicker {
+      font-size: 0.78rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(231, 195, 200, 0.9);
+      margin: 0 0 16px;
+    }
+
+    .hero-title {
+      font-size: 2.1rem;
+      line-height: 1.18;
+      font-weight: 600;
+      margin: 0 0 22px;
+    }
+
+    @media (min-width: 900px) {
+      .hero-title {
+        font-size: 2.6rem;
+      }
+    }
+
+    .hero-title-line {
+      display: block;
+    }
+
+    .hero-title-em {
+      display: inline-block;
+      position: relative;
+      padding: 0 0.08em;
+    }
+
+    /* subtle “cinematic” underline / band under second line */
+    .hero-title-em::before {
+      content: "";
+      position: absolute;
+      inset: 68% -0.16em -0.04em;
+      background: rgba(199, 108, 118, 0.45);
+      border-radius: 8px;
+      z-index: -1;
+    }
+
+    .hero-subtext {
+      font-size: 0.98rem;
+      line-height: 1.7;
+      margin: 0;
+      color: rgba(251, 244, 236, 0.9);
+    }
+
+    .hero-subtext + .hero-subtext {
+      margin-top: 8px;
+    }
+
+    .hero-actions {
+      margin-top: 26px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    @media (min-width: 900px) {
+      .hero-actions {
+        flex-direction: row;
+        justify-content: center;
+        gap: 18px;
+      }
+    }
+
+    .hero-link {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.78rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: #fdf6ee;
+      padding-bottom: 4px;
+    }
+
+    .hero-link::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 1px;
+      background: rgba(231, 195, 200, 0.95);
+    }
+
+    .hero-link:hover,
+    .hero-link:focus-visible {
+      outline: none;
+      transform: translateY(-1px);
+    }
+
+    .hero-note {
+      font-size: 0.86rem;
+      color: rgba(231, 195, 200, 0.9);
+      max-width: 20rem;
+      text-align: center;
+    }
+
+    /* Sections */
 
     .section-shell {
       padding: 32px 0 36px;
@@ -123,213 +280,6 @@
         align-items: flex-start;
       }
     }
-
-    /* HERO – controlled wildfire */
-
-    .hero-shell {
-      margin-top: 36px;
-      padding: 44px 0 56px;
-      border-bottom: 1px solid var(--border-subtle);
-      position: relative;
-      overflow: visible;
-    }
-
-    /* subtle background flare on the right */
-    .hero-shell::after {
-      content: "";
-      position: absolute;
-      right: -15%;
-      top: -10%;
-      width: 45%;
-      height: 120%;
-      background:
-        radial-gradient(circle at 10% 0,
-          rgba(199, 108, 118, 0.25),
-          transparent 60%)
-        ,
-        linear-gradient(
-          180deg,
-          rgba(33, 25, 21, 0.16),
-          rgba(33, 25, 21, 0.04)
-        );
-      opacity: 0.9;
-      filter: blur(0.2px);
-      pointer-events: none;
-    }
-
-    @media (min-width: 900px) {
-      .hero-shell {
-        margin-top: 52px;
-        padding: 56px 0 64px;
-      }
-    }
-
-    .hero {
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
-      position: relative;
-      z-index: 1;
-    }
-
-    @media (min-width: 900px) {
-      .hero {
-        display: grid;
-        grid-template-columns: minmax(0, 1.4fr) minmax(0, 0.8fr);
-        column-gap: 72px;
-        align-items: flex-start;
-      }
-    }
-
-    .hero-main {
-      position: relative;
-      padding-left: 12px;
-    }
-
-    @media (min-width: 900px) {
-      .hero-main {
-        padding-left: 18px;
-      }
-    }
-
-    .hero-main::before {
-      content: "";
-      position: absolute;
-      left: -10px;
-      top: 10px;
-      width: 2px;
-      height: 86px;
-      background: var(--accent);
-    }
-
-    .hero-title {
-      font-size: 2.05rem;
-      line-height: 1.18;
-      font-weight: 600;
-      margin: 0 0 18px;
-      max-width: 32rem;
-    }
-
-    @media (min-width: 900px) {
-      .hero-title {
-        font-size: 2.45rem;
-      }
-    }
-
-    .hero-title-line {
-      display: block;
-    }
-
-    .hero-title-accent {
-      position: relative;
-      display: inline-block;
-      padding: 0 0.04em;
-    }
-
-    .hero-title-accent::before {
-      content: "";
-      position: absolute;
-      inset: 60% -0.08em -0.08em;
-      background: rgba(199, 108, 118, 0.32);
-      border-radius: 6px;
-      z-index: -1;
-    }
-
-    .hero-subtext {
-      font-size: 0.98rem;
-      line-height: 1.65;
-      margin: 0 0 2px;
-      max-width: 32rem;
-      color: #3b2e26;
-    }
-
-    .hero-subtext + .hero-subtext {
-      margin-top: 6px;
-    }
-
-    .hero-actions {
-      margin-top: 24px;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 10px;
-    }
-
-    @media (min-width: 900px) {
-      .hero-actions {
-        flex-direction: row;
-        align-items: center;
-        gap: 18px;
-      }
-    }
-
-    .hero-button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 8px 20px;
-      border-radius: 999px;
-      border: 1px solid rgba(199, 108, 118, 0.75);
-      background: var(--accent);
-      font: inherit;
-      cursor: pointer;
-      text-decoration: none;
-      font-size: 0.76rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: #211915;
-      box-shadow: 0 10px 26px rgba(199, 108, 118, 0.35);
-    }
-
-    .hero-button:hover,
-    .hero-button:focus-visible {
-      outline: none;
-      box-shadow: 0 14px 30px rgba(199, 108, 118, 0.45);
-      transform: translateY(-1px);
-    }
-
-    .hero-note {
-      font-size: 0.85rem;
-      color: var(--muted);
-      max-width: 18rem;
-    }
-
-    /* right side = pure atmosphere, no box */
-
-    .hero-art {
-      display: none;
-    }
-
-    @media (min-width: 900px) {
-      .hero-art {
-        display: block;
-        position: relative;
-        min-height: 210px;
-      }
-
-      .hero-art::before {
-        content: "";
-        position: absolute;
-        right: 8%;
-        top: 12%;
-        width: 70%;
-        height: 65%;
-        background:
-          radial-gradient(circle at 0 0,
-            rgba(255, 255, 255, 0.16),
-            transparent 60%)
-          ,
-          radial-gradient(circle at 100% 100%,
-            rgba(199, 108, 118, 0.35),
-            transparent 65%);
-        opacity: 0.95;
-        mix-blend-mode: multiply;
-        filter: blur(0.3px);
-        border-radius: 32px;
-      }
-    }
-
-    /* Sections */
 
     .section-title {
       font-size: 0.96rem;
@@ -453,12 +403,14 @@
         <!-- HERO -->
         <section class="hero-shell">
           <div class="hero">
-            <div class="hero-main">
+            <div class="hero-inner">
+              <p class="hero-kicker">FOR WHEN “IT SHOULDN’T BE THIS HARD”</p>
+
               <h1 class="hero-title">
                 <span class="hero-title-line">
                   Making sense of how your business operates
                 </span>
-                <span class="hero-title-line hero-title-accent">
+                <span class="hero-title-line hero-title-em">
                   and creating systems that support your work.
                 </span>
               </h1>
@@ -472,7 +424,7 @@
 
               <div class="hero-actions">
                 <a
-                  class="hero-button"
+                  class="hero-link"
                   href="mailto:suzi@radpurpose.com?subject=Shopify%20%C2%B7%20Bookkeeping%20%C2%B7%20Operations"
                 >
                   REACH OUT —-&gt;
@@ -482,9 +434,6 @@
                 </p>
               </div>
             </div>
-
-            <!-- right side: atmosphere only, no box -->
-            <div class="hero-art" aria-hidden="true"></div>
           </div>
         </section>
 
