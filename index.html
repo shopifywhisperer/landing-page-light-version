@@ -109,7 +109,6 @@
       }
     }
 
-    .hero,
     .section-grid {
       display: flex;
       flex-direction: column;
@@ -117,13 +116,6 @@
     }
 
     @media (min-width: 900px) {
-      .hero {
-        display: grid;
-        grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.9fr);
-        align-items: flex-start;
-        column-gap: 72px;
-      }
-
       .section-grid {
         display: grid;
         grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.7fr);
@@ -135,27 +127,53 @@
     /* Hero */
 
     .hero-shell {
-      margin-top: 32px;
-      padding: 30px 0 40px;
+      margin-top: 36px;
+      padding: 40px 0 52px;
       border-bottom: 1px solid var(--border-subtle);
+      position: relative;
     }
 
     @media (min-width: 900px) {
       .hero-shell {
-        margin-top: 42px;
-        padding: 40px 0 48px;
+        margin-top: 48px;
+        padding: 52px 0 60px;
+      }
+    }
+
+    .hero {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    @media (min-width: 900px) {
+      .hero {
+        display: grid;
+        grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+        column-gap: 72px;
+        align-items: stretch;
       }
     }
 
     .hero-main {
-      padding-left: 18px;
-      border-left: 2px solid var(--accent);
+      position: relative;
+      padding-left: 6px;
     }
 
     @media (min-width: 900px) {
       .hero-main {
-        padding-left: 22px;
+        padding-left: 12px;
       }
+    }
+
+    .hero-main::before {
+      content: "";
+      position: absolute;
+      left: -10px;
+      top: 6px;
+      width: 2px;
+      height: 74px;
+      background: var(--accent);
     }
 
     .hero-kicker {
@@ -167,15 +185,16 @@
     }
 
     .hero-title {
-      font-size: 1.7rem;
-      line-height: 1.3;
+      font-size: 1.9rem;
+      line-height: 1.25;
       font-weight: 600;
       margin: 0 0 18px;
     }
 
     @media (min-width: 900px) {
       .hero-title {
-        font-size: 2.0rem;
+        font-size: 2.25rem;
+        max-width: 26rem;
       }
     }
 
@@ -183,7 +202,7 @@
       font-size: 0.98rem;
       line-height: 1.7;
       margin: 0 0 2px;
-      max-width: 40rem;
+      max-width: 32rem;
     }
 
     .hero-subtext + .hero-subtext {
@@ -196,6 +215,15 @@
       flex-direction: column;
       align-items: flex-start;
       gap: 10px;
+    }
+
+    @media (min-width: 900px) {
+      .hero-actions {
+        margin-top: 22px;
+        flex-direction: row;
+        align-items: center;
+        gap: 18px;
+      }
     }
 
     .hero-button {
@@ -224,27 +252,71 @@
     .hero-note {
       font-size: 0.85rem;
       color: var(--muted);
+      max-width: 18rem;
     }
 
-    .hero-side {
-      font-size: 0.9rem;
-      line-height: 1.7;
-      color: var(--muted);
-      padding-top: 4px;
+    /* Right-hand hero panel */
+
+    .hero-panel {
+      position: relative;
+      border-radius: 24px;
+      padding: 18px 18px 20px;
+      background: linear-gradient(
+        145deg,
+        rgba(33, 25, 21, 0.96),
+        rgba(33, 25, 21, 0.88)
+      );
+      color: #f9f4ee;
+      overflow: hidden;
+      box-shadow: 0 26px 60px rgba(18, 10, 6, 0.4);
+    }
+
+    @media (min-width: 900px) {
+      .hero-panel {
+        margin-top: 4px;
+      }
+    }
+
+    .hero-panel::before {
+      content: "";
+      position: absolute;
+      inset: -40px;
+      background-image:
+        radial-gradient(
+          circle at 0 0,
+          rgba(255, 255, 255, 0.06),
+          transparent 55%
+        ),
+        radial-gradient(
+          circle at 100% 100%,
+          rgba(199, 108, 118, 0.22),
+          transparent 55%
+        );
+      opacity: 0.95;
+      mix-blend-mode: screen;
+      pointer-events: none;
+    }
+
+    .hero-panel-inner {
+      position: relative;
+      z-index: 1;
     }
 
     .hero-side-label {
       font-size: 0.78rem;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 8px;
+      color: var(--accent-soft);
+      margin-bottom: 10px;
     }
 
     .hero-side-block {
-      padding: 10px 0 0;
-      border-top: 1px solid rgba(199, 108, 118, 0.28);
+      padding: 12px 0 0;
+      border-top: 1px solid rgba(243, 230, 224, 0.42);
+      font-size: 0.92rem;
+      line-height: 1.75;
       max-width: 22rem;
+      color: #fdf7f1;
     }
 
     /* Sections */
@@ -396,12 +468,14 @@
               </div>
             </div>
 
-            <aside class="hero-side">
-              <div class="hero-side-label">For when “it shouldn’t be this hard”</div>
-              <div class="hero-side-block">
-                The moment you realize you’re spending too much energy chasing down
-                mismatched numbers, fixing the same issues, or carrying details that
-                should live in a system — that’s usually when people email me.
+            <aside class="hero-panel">
+              <div class="hero-panel-inner">
+                <div class="hero-side-label">For when “it shouldn’t be this hard”</div>
+                <div class="hero-side-block">
+                  The moment you realize you’re spending too much energy chasing down
+                  mismatched numbers, fixing the same issues, or carrying details that
+                  should live in a system — that’s usually when people email me.
+                </div>
               </div>
             </aside>
           </div>
@@ -475,45 +549,4 @@
           </div>
         </section>
 
-        <!-- FIT / NOT FIT -->
-        <section class="section-shell alt">
-          <div class="section-grid">
-            <div>
-              <h2 class="section-title">FIT / NOT FIT</h2>
-            </div>
-            <div>
-              <div class="fit-block">
-                <p class="fit-label">A good fit:</p>
-                <p class="fit-body">
-                  You have an active business and the core operations are established, but Shopify, bookkeeping,
-                  and daily workflows need to be aligned so everything reflects the same reality. You want clear,
-                  consistent operations supported by someone who understands the details without adding complexity.
-                </p>
-              </div>
-
-              <div class="fit-block">
-                <p class="fit-label">Not a fit:</p>
-                <p class="fit-body">
-                  This isn’t the right match if you need a custom Shopify theme built from the ground up, if the
-                  business requires urgent intervention, or if you’re looking for a full team or agency structure.
-                  My work is steady, detailed operational support — not surface-level shortcuts or full-scale rebuilds.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-      </main>
-    </div>
-
-    <footer class="site-footer">
-      <div class="site-footer-inner">
-        © <span id="year"></span> Suzi Neves
-      </div>
-    </footer>
-  </div>
-
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
-</body>
-</html>
+        <!-- FIT / NOT FIT -
