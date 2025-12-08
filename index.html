@@ -185,22 +185,34 @@
       max-width: 30rem;
     }
 
-    .hero-title-accent {
-      color: var(--accent);
-    }
-
     @media (min-width: 900px) {
       .hero-title {
         font-size: 2.35rem;
       }
     }
 
+    /* highlight only the second line of the title */
+    .hero-title-accent {
+      position: relative;
+      display: inline-block;
+      padding: 0 0.04em;
+    }
+
+    .hero-title-accent::before {
+      content: "";
+      position: absolute;
+      inset: 55% -0.1em -0.1em;
+      background: rgba(199, 108, 118, 0.26);
+      z-index: -1;
+      border-radius: 6px;
+    }
+
     .hero-subtext {
-      font-size: 0.98rem;
-      line-height: 1.75;
+      font-size: 0.97rem;
+      line-height: 1.6;
       margin: 0 0 2px;
       max-width: 32rem;
-      color: var(--muted);
+      color: #3b2e26;
     }
 
     .hero-subtext + .hero-subtext {
@@ -226,25 +238,26 @@
     .hero-button {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      padding: 0;
-      border: none;
-      background: none;
+      justify-content: center;
+      padding: 8px 18px;
+      border-radius: 999px;
+      border: 1px solid rgba(199, 108, 118, 0.7);
+      background: var(--accent);
       font: inherit;
       cursor: pointer;
       text-decoration: none;
-      font-size: 0.9rem;
-      letter-spacing: 0.16em;
+      font-size: 0.76rem;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
-      border-bottom: 1px solid var(--accent);
-      padding-bottom: 4px;
-      color: var(--accent);
+      color: #211915;
+      box-shadow: 0 10px 26px rgba(199, 108, 118, 0.35);
     }
 
     .hero-button:hover,
     .hero-button:focus-visible {
       outline: none;
-      border-bottom-width: 2px;
+      box-shadow: 0 14px 30px rgba(199, 108, 118, 0.45);
+      transform: translateY(-1px);
     }
 
     .hero-note {
@@ -258,12 +271,17 @@
     .hero-panel {
       position: relative;
       border-radius: 26px;
-      padding: 20px 20px 22px;
-      background: linear-gradient(
-        145deg,
-        rgba(24, 16, 12, 0.98),
-        rgba(44, 29, 22, 0.9)
-      );
+      padding: 22px 22px 24px;
+      background: radial-gradient(
+          circle at 0 0,
+          rgba(231, 195, 200, 0.22),
+          transparent 65%
+        ),
+        linear-gradient(
+          145deg,
+          #211814,
+          #33221b
+        );
       color: #f9f4ee;
       overflow: hidden;
       box-shadow: 0 28px 64px rgba(18, 10, 6, 0.5);
@@ -272,46 +290,11 @@
     @media (min-width: 900px) {
       .hero-panel {
         margin-top: 8px;
-        margin-right: -32px; /* slight bleed to the edge for tension */
+        margin-right: -32px; /* bleed to edge for tension */
       }
     }
 
-    .hero-panel::before {
-      content: "";
-      position: absolute;
-      inset: -40px;
-      background-image:
-        radial-gradient(
-          circle at 0 0,
-          rgba(255, 255, 255, 0.08),
-          transparent 55%
-        ),
-        radial-gradient(
-          circle at 100% 100%,
-          rgba(199, 108, 118, 0.25),
-          transparent 55%
-        );
-      opacity: 0.95;
-      mix-blend-mode: screen;
-      pointer-events: none;
-    }
-
-    .hero-panel::after {
-      content: "";
-      position: absolute;
-      right: -40px;
-      top: 40%;
-      width: 120px;
-      height: 180px;
-      background: radial-gradient(
-        circle at 0 50%,
-        rgba(231, 195, 200, 0.5),
-        transparent 65%
-      );
-      opacity: 0.85;
-      pointer-events: none;
-    }
-
+    /* simplified texture, no weird side blob */
     .hero-panel-inner {
       position: relative;
       z-index: 1;
@@ -328,7 +311,7 @@
     .hero-side-block {
       padding: 12px 0 0;
       border-top: 1px solid rgba(243, 230, 224, 0.42);
-      font-size: 0.92rem;
+      font-size: 0.94rem;
       line-height: 1.75;
       max-width: 22rem;
       color: #fdf7f1;
