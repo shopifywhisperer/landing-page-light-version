@@ -131,6 +131,7 @@
       padding: 40px 0 52px;
       border-bottom: 1px solid var(--border-subtle);
       position: relative;
+      overflow: visible;
     }
 
     @media (min-width: 900px) {
@@ -149,7 +150,7 @@
     @media (min-width: 900px) {
       .hero {
         display: grid;
-        grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+        grid-template-columns: minmax(0, 1.3fr) minmax(0, 1.05fr);
         column-gap: 72px;
         align-items: stretch;
       }
@@ -157,12 +158,12 @@
 
     .hero-main {
       position: relative;
-      padding-left: 6px;
+      padding-left: 10px;
     }
 
     @media (min-width: 900px) {
       .hero-main {
-        padding-left: 12px;
+        padding-left: 16px;
       }
     }
 
@@ -170,47 +171,44 @@
       content: "";
       position: absolute;
       left: -10px;
-      top: 6px;
+      top: 8px;
       width: 2px;
-      height: 74px;
+      height: 80px;
       background: var(--accent);
     }
 
-    .hero-kicker {
-      font-size: 0.8rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 10px;
-    }
-
     .hero-title {
-      font-size: 1.9rem;
-      line-height: 1.25;
+      font-size: 2rem;
+      line-height: 1.2;
       font-weight: 600;
       margin: 0 0 18px;
+      max-width: 30rem;
+    }
+
+    .hero-title-accent {
+      color: var(--accent);
     }
 
     @media (min-width: 900px) {
       .hero-title {
-        font-size: 2.25rem;
-        max-width: 26rem;
+        font-size: 2.35rem;
       }
     }
 
     .hero-subtext {
       font-size: 0.98rem;
-      line-height: 1.7;
+      line-height: 1.75;
       margin: 0 0 2px;
       max-width: 32rem;
+      color: var(--muted);
     }
 
     .hero-subtext + .hero-subtext {
-      margin-top: 4px;
+      margin-top: 6px;
     }
 
     .hero-actions {
-      margin-top: 20px;
+      margin-top: 22px;
       display: flex;
       flex-direction: column;
       align-items: flex-start;
@@ -219,7 +217,6 @@
 
     @media (min-width: 900px) {
       .hero-actions {
-        margin-top: 22px;
         flex-direction: row;
         align-items: center;
         gap: 18px;
@@ -241,6 +238,7 @@
       text-transform: uppercase;
       border-bottom: 1px solid var(--accent);
       padding-bottom: 4px;
+      color: var(--accent);
     }
 
     .hero-button:hover,
@@ -259,21 +257,22 @@
 
     .hero-panel {
       position: relative;
-      border-radius: 24px;
-      padding: 18px 18px 20px;
+      border-radius: 26px;
+      padding: 20px 20px 22px;
       background: linear-gradient(
         145deg,
-        rgba(33, 25, 21, 0.96),
-        rgba(33, 25, 21, 0.88)
+        rgba(24, 16, 12, 0.98),
+        rgba(44, 29, 22, 0.9)
       );
       color: #f9f4ee;
       overflow: hidden;
-      box-shadow: 0 26px 60px rgba(18, 10, 6, 0.4);
+      box-shadow: 0 28px 64px rgba(18, 10, 6, 0.5);
     }
 
     @media (min-width: 900px) {
       .hero-panel {
-        margin-top: 4px;
+        margin-top: 8px;
+        margin-right: -32px; /* slight bleed to the edge for tension */
       }
     }
 
@@ -284,16 +283,32 @@
       background-image:
         radial-gradient(
           circle at 0 0,
-          rgba(255, 255, 255, 0.06),
+          rgba(255, 255, 255, 0.08),
           transparent 55%
         ),
         radial-gradient(
           circle at 100% 100%,
-          rgba(199, 108, 118, 0.22),
+          rgba(199, 108, 118, 0.25),
           transparent 55%
         );
       opacity: 0.95;
       mix-blend-mode: screen;
+      pointer-events: none;
+    }
+
+    .hero-panel::after {
+      content: "";
+      position: absolute;
+      right: -40px;
+      top: 40%;
+      width: 120px;
+      height: 180px;
+      background: radial-gradient(
+        circle at 0 50%,
+        rgba(231, 195, 200, 0.5),
+        transparent 65%
+      );
+      opacity: 0.85;
       pointer-events: none;
     }
 
@@ -349,245 +364,3 @@
       display: flex;
       flex-direction: column;
       gap: 18px;
-    }
-
-    @media (min-width: 900px) {
-      .support-list {
-        margin-top: 4px;
-        gap: 20px;
-      }
-    }
-
-    .support-item-title {
-      font-size: 0.95rem;
-      font-weight: 600;
-      margin: 0 0 2px;
-    }
-
-    .support-item-body {
-      font-size: 0.96rem;
-      line-height: 1.7;
-      margin: 0;
-      color: var(--muted);
-    }
-
-    /* How Working Together Feels */
-
-    .feels-body {
-      font-size: 0.96rem;
-      line-height: 1.7;
-      margin: 0 0 12px;
-      color: var(--text);
-    }
-
-    .feels-body:last-of-type {
-      margin-bottom: 0;
-    }
-
-    /* Fit / Not Fit */
-
-    .fit-block {
-      margin-top: 8px;
-    }
-
-    .fit-label {
-      font-size: 0.86rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin: 0 0 4px;
-    }
-
-    .fit-body {
-      font-size: 0.96rem;
-      line-height: 1.7;
-      margin: 0;
-      color: var(--text);
-    }
-
-    .fit-block + .fit-block {
-      margin-top: 16px;
-    }
-
-    /* Footer */
-
-    .site-footer {
-      padding: 18px 18px 26px;
-      font-size: 0.8rem;
-      color: var(--muted);
-    }
-
-    .site-footer-inner {
-      max-width: var(--max-width);
-      margin: 0 auto;
-      border-top: 1px solid rgba(40, 28, 20, 0.12);
-      padding-top: 10px;
-    }
-
-    @media (min-width: 900px) {
-      .site-footer {
-        padding: 22px 32px 32px;
-      }
-    }
-  </style>
-</head>
-<body>
-  <div class="page">
-    <div class="shell">
-      <header class="site-header">
-        <div class="site-title">SUZI NEVES</div>
-        <div class="site-tagline">SHOPIFY - BOOKKEEPING - OPERATIONS</div>
-      </header>
-
-      <main>
-        <!-- HERO -->
-        <section class="hero-shell">
-          <div class="hero">
-            <div class="hero-main">
-              <h1 class="hero-title">
-                Making sense of how your business operates and creating systems that support your work.
-              </h1>
-
-              <p class="hero-subtext">
-                The parts of the business that keep tugging at you don’t have to stay heavy.
-              </p>
-              <p class="hero-subtext">
-                I bring clarity to how everything works together so the daily flow feels calmer.
-              </p>
-
-              <div class="hero-actions">
-                <a
-                  class="hero-button"
-                  href="mailto:suzi@radpurpose.com?subject=Shopify%20%C2%B7%20Bookkeeping%20%C2%B7%20Operations"
-                >
-                  Reach Out —-&gt;
-                </a>
-                <p class="hero-note">
-                  If it’s hard to put into words, that’s okay. Start wherever.
-                </p>
-              </div>
-            </div>
-
-            <aside class="hero-panel">
-              <div class="hero-panel-inner">
-                <div class="hero-side-label">For when “it shouldn’t be this hard”</div>
-                <div class="hero-side-block">
-                  The moment you realize you’re spending too much energy chasing down
-                  mismatched numbers, fixing the same issues, or carrying details that
-                  should live in a system — that’s usually when people email me.
-                </div>
-              </div>
-            </aside>
-          </div>
-        </section>
-
-        <!-- WHAT I HELP WITH -->
-        <section class="section-shell alt">
-          <div class="section-grid">
-            <div>
-              <h2 class="section-title">WHAT I HELP WITH</h2>
-              <p class="section-intro">
-                Most people reach out because something in the workflow isn’t adding up — Shopify shows one thing,
-                the books show another, or the day-to-day process feels heavier than it should. It’s not chaos,
-                it’s just work that isn’t flowing the way it needs to.
-              </p>
-              <p class="section-intro">
-                Here’s where I usually step in:
-              </p>
-            </div>
-
-            <div>
-              <ul class="support-list">
-                <li>
-                  <h3 class="support-item-title">Shopify that stays current</h3>
-                  <p class="support-item-body">
-                    Products, collections, settings, and daily updates aligned with what’s happening right now —
-                    accurate, consistent, and easy to maintain.
-                  </p>
-                </li>
-                <li>
-                  <h3 class="support-item-title">Numbers that reflect the same reality</h3>
-                  <p class="support-item-body">
-                    Payouts, refunds, discounts, fees, and deposits all lining up so the financial side and Shopify
-                    side match without extra work or second-guessing.
-                  </p>
-                </li>
-                <li>
-                  <h3 class="support-item-title">Operational issues that need a steady hand</h3>
-                  <p class="support-item-body">
-                    The recurring glitches — mismatched data, duplicate behavior, processes that keep slowing things
-                    down. I sort through what’s happening and get it running the way it should.
-                  </p>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </section>
-
-        <!-- HOW WORKING TOGETHER FEELS -->
-        <section class="section-shell">
-          <div class="section-grid">
-            <div>
-              <h2 class="section-title">HOW WORKING TOGETHER FEELS</h2>
-            </div>
-            <div>
-              <p class="feels-body">
-                You tell me what’s happening — the parts that feel off, the areas you keep circling, the things that
-                aren’t matching what you expect. It can be brief. It doesn’t need to be organized.
-              </p>
-              <p class="feels-body">
-                I review the setup you already have: your Shopify configuration, your financial flow, how updates are
-                managed, and where the inconsistencies are showing up. The goal is to understand the system as it is,
-                so we can see what’s solid, what needs tightening, and what needs a fresh start.
-              </p>
-              <p class="feels-body">
-                From there, we make practical changes that hold — cleaning up the areas that create extra work,
-                tightening the parts that drift, and getting the workflow to operate the way it should. It’s steady,
-                detailed work that makes the day-to-day feel easier.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        <!-- FIT / NOT FIT -->
-        <section class="section-shell alt">
-          <div class="section-grid">
-            <div>
-              <h2 class="section-title">FIT / NOT FIT</h2>
-            </div>
-            <div>
-              <div class="fit-block">
-                <p class="fit-label">A good fit:</p>
-                <p class="fit-body">
-                  You have an active business and the core operations are established, but Shopify, bookkeeping,
-                  and daily workflows need to be aligned so everything reflects the same reality. You want clear,
-                  consistent operations supported by someone who understands the details without adding complexity.
-                </p>
-              </div>
-
-              <div class="fit-block">
-                <p class="fit-label">Not a fit:</p>
-                <p class="fit-body">
-                  This isn’t the right match if you need a custom Shopify theme built from the ground up, if the
-                  business requires urgent intervention, or if you’re looking for a full team or agency structure.
-                  My work is steady, detailed operational support — not surface-level shortcuts or full-scale rebuilds.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-      </main>
-    </div>
-
-    <footer class="site-footer">
-      <div class="site-footer-inner">
-        © <span id="year"></span> Suzi Neves
-      </div>
-    </footer>
-  </div>
-
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
-</body>
-</html>
