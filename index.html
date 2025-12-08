@@ -7,18 +7,18 @@
 
   <style>
     :root {
-      /* Neutral, not beige */
-      --bg: #f4f4f3;
-      --bg-alt: #ffffff;
+      /* Cool, clean base – no brown, no beige */
+      --bg: #f5f6fa;
+      --bg-alt: #edf0f7;
 
-      --text: #111111;
-      --muted: #5d5d5d;
+      --text: #111219;
+      --muted: #5f6470;
 
-      /* Black + Ember palette */
+      /* Ember accent, but used lightly */
       --accent: #e4572e;        /* ember */
-      --accent-soft: #f29b7a;   /* softer ember highlight */
+      --accent-soft: #ff9b7a;   /* softer ember */
 
-      --border-subtle: rgba(0, 0, 0, 0.12);
+      --border-subtle: rgba(9, 12, 22, 0.12);
       --max-width: 1040px;
     }
 
@@ -87,12 +87,12 @@
       color: var(--muted);
     }
 
-    /* HERO – Black + Ember cinematic band */
+    /* HERO – light, airy, color at the edges */
 
     .hero-shell {
       position: relative;
       margin: 40px 0 44px;
-      padding: 60px 0 70px;
+      padding: 60px 0 64px;
       border-bottom: 1px solid var(--border-subtle);
       overflow: visible;
     }
@@ -100,31 +100,33 @@
     @media (min-width: 900px) {
       .hero-shell {
         margin: 56px 0 56px;
-        padding: 80px 0 86px;
+        padding: 72px 0 76px;
       }
     }
 
-    /* full-width dark band */
+    /* Horizon glow: color lives at the very top, fades into neutral */
     .hero-shell::before {
       content: "";
       position: absolute;
-      top: -32px;
-      bottom: -32px;
+      top: 0;
       left: 50%;
       transform: translateX(-50%);
       width: 100vw;
+      height: 52%;
       background:
         radial-gradient(circle at 12% 0,
-          rgba(228, 87, 46, 0.4),
+          rgba(228, 87, 46, 0.35),
           transparent 55%)
         ,
         linear-gradient(
-          135deg,
-          #050608,
-          #111319
+          180deg,
+          rgba(9, 12, 22, 0.92),
+          rgba(9, 12, 22, 0.55),
+          transparent 80%
         );
-      opacity: 1;
+      opacity: 0.95;
       z-index: 0;
+      pointer-events: none;
     }
 
     .hero {
@@ -134,30 +136,30 @@
     }
 
     .hero-inner {
-      max-width: 44rem;
+      max-width: 40rem;
       margin: 0 auto;
       padding: 0 8px;
-      color: #f8f8f8;
+      color: #f9fafb;
     }
 
     .hero-kicker {
       font-size: 0.78rem;
       letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: rgba(242, 155, 122, 0.95);
+      color: rgba(255, 155, 122, 0.9);
       margin: 0 0 16px;
     }
 
     .hero-title {
-      font-size: 2.15rem;
-      line-height: 1.18;
+      font-size: 2rem;
+      line-height: 1.25;
       font-weight: 600;
-      margin: 0 0 22px;
+      margin: 0 0 20px;
     }
 
     @media (min-width: 900px) {
       .hero-title {
-        font-size: 2.7rem;
+        font-size: 2.4rem;
       }
     }
 
@@ -171,16 +173,19 @@
       padding: 0 0.08em;
     }
 
-    /* ember band under second line */
+    /* Thin ember underline under second line – not a big slab */
     .hero-title-em::before {
       content: "";
       position: absolute;
-      inset: 68% -0.16em -0.04em;
+      left: 0;
+      right: 0;
+      bottom: -0.1em;
+      height: 2px;
       background: linear-gradient(
         90deg,
-        rgba(228, 87, 46, 0.2),
-        rgba(228, 87, 46, 0.75),
-        rgba(242, 155, 122, 0.4)
+        rgba(228, 87, 46, 0.15),
+        rgba(228, 87, 46, 0.8),
+        rgba(255, 155, 122, 0.4)
       );
       border-radius: 999px;
       z-index: -1;
@@ -190,7 +195,7 @@
       font-size: 0.98rem;
       line-height: 1.7;
       margin: 0;
-      color: rgba(245, 245, 245, 0.9);
+      color: rgba(248, 250, 252, 0.9);
     }
 
     .hero-subtext + .hero-subtext {
@@ -198,7 +203,7 @@
     }
 
     .hero-actions {
-      margin-top: 28px;
+      margin-top: 26px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -222,7 +227,7 @@
       letter-spacing: 0.2em;
       text-transform: uppercase;
       text-decoration: none;
-      color: #f8f8f8;
+      color: #f9fafb;
       padding-bottom: 4px;
     }
 
@@ -233,7 +238,7 @@
       right: 0;
       bottom: 0;
       height: 1px;
-      background: rgba(242, 155, 122, 0.95);
+      background: rgba(255, 155, 122, 0.95);
     }
 
     .hero-link:hover,
@@ -244,12 +249,12 @@
 
     .hero-note {
       font-size: 0.86rem;
-      color: rgba(242, 155, 122, 0.9);
+      color: rgba(255, 201, 177, 0.95);
       max-width: 20rem;
       text-align: center;
     }
 
-    /* Sections */
+    /* Sections – keep them light and breathing */
 
     .section-shell {
       padding: 32px 0 36px;
@@ -390,7 +395,7 @@
     .site-footer-inner {
       max-width: var(--max-width);
       margin: 0 auto;
-      border-top: 1px solid rgba(0, 0, 0, 0.08);
+      border-top: 1px solid rgba(9, 12, 22, 0.08);
       padding-top: 10px;
     }
 
@@ -557,4 +562,3 @@
   </script>
 </body>
 </html>
-
