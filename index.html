@@ -7,11 +7,14 @@
 
   <style>
     :root {
+      /* Light “paper” canvas + ink */
       --bg-paper: #f5f2ed;
       --bg-paper-soft: #eee7de;
       --ink: #151a23;
       --ink-soft: #4b4a52;
       --ink-muted: #7b746f;
+
+      /* Clay / pink + soft ink shapes */
       --clay: #ba8276;
       --clay-soft: rgba(186, 130, 118, 0.4);
       --ink-light-soft: rgba(37, 43, 56, 0.1);
@@ -21,9 +24,13 @@
       box-sizing: border-box;
     }
 
+    html,
     body {
       margin: 0;
       padding: 0;
+    }
+
+    body {
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
         "Helvetica Neue", Arial, sans-serif;
       background:
@@ -31,6 +38,14 @@
         linear-gradient(180deg, var(--bg-paper) 0, var(--bg-paper-soft) 100%);
       color: var(--ink);
       line-height: 1.6;
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: "Georgia", "Times New Roman", serif;
+      letter-spacing: 0.01em;
+      color: var(--ink);
     }
 
     .page {
@@ -43,6 +58,8 @@
       margin: 0 auto;
       position: relative;
     }
+
+    /* --- Header --- */
 
     header.site-header {
       display: flex;
@@ -67,9 +84,63 @@
       max-width: 340px;
     }
 
+    /* --- Arc motif base --- */
+
+    .section-with-arc {
+      position: relative;
+    }
+
+    .section-with-arc::before {
+      content: "";
+      position: absolute;
+      pointer-events: none;
+      z-index: -1;
+      border-radius: 999px;
+      opacity: 0.9;
+      filter: blur(1px);
+      background:
+        radial-gradient(circle at 0% 50%, var(--clay-soft) 0, transparent 60%),
+        radial-gradient(circle at 100% 50%, var(--ink-light-soft) 0, transparent 70%);
+    }
+
+    .hero.section-with-arc::before {
+      width: 430px;
+      height: 430px;
+      top: -80px;
+      left: -160px;
+    }
+
+    .section-what.section-with-arc::before {
+      width: 420px;
+      height: 420px;
+      top: -40px;
+      right: -180px;
+      background:
+        radial-gradient(circle at 100% 40%, var(--clay-soft) 0, transparent 60%),
+        radial-gradient(circle at 0% 60%, var(--ink-light-soft) 0, transparent 70%);
+    }
+
+    .section-how.section-with-arc::before {
+      width: 420px;
+      height: 420px;
+      bottom: -140px;
+      left: -160px;
+    }
+
+    .section-contact.section-with-arc::before {
+      width: 520px;
+      height: 380px;
+      bottom: -210px;
+      right: -120px;
+      background:
+        radial-gradient(circle at 50% 100%, var(--clay-soft) 0, transparent 68%),
+        radial-gradient(circle at 20% 80%, var(--ink-light-soft) 0, transparent 72%);
+    }
+
+    /* --- Hero --- */
+
     .hero {
       padding: 1.4rem 0 3.2rem;
-      position: relative;
     }
 
     .hero-inner {
@@ -131,6 +202,11 @@
       transition: opacity 0.18s ease, transform 0.18s ease;
     }
 
+    .hero-cta:hover {
+      opacity: 0.82;
+      transform: translateY(-1px);
+    }
+
     .hero-micro {
       margin: 0;
       font-size: 0.9rem;
@@ -160,6 +236,8 @@
       list-style: none;
       padding: 0;
       margin: 0 0 0.6rem;
+      font-size: 0.9rem;
+      color: var(--ink-soft);
     }
 
     .hero-aside-list li {
@@ -174,19 +252,248 @@
       left: 0;
       top: 0;
       color: var(--clay);
+      font-size: 0.9rem;
+    }
+
+    .hero-aside-foot {
+      font-size: 0.8rem;
+      color: var(--ink-muted);
     }
 
     .hero-underline {
       margin-top: 3rem;
       height: 1px;
+      width: 100%;
       background: linear-gradient(90deg, var(--clay-soft), transparent 55%);
       opacity: 0.9;
     }
 
-    /* Rest of your section styles unchanged… */
+    /* --- Shared section styles --- */
+
+    .section {
+      padding: 3.5rem 0;
+    }
+
+    .section-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .section-title {
+      font-size: 1.4rem;
+      font-weight: 500;
+      margin: 0 0 0.9rem;
+    }
+
+    .section-title span {
+      color: var(--clay);
+    }
+
+    .section-intro {
+      margin: 0 0 2.1rem;
+      font-size: 1rem;
+      line-height: 1.7;
+      color: var(--ink-soft);
+      max-width: 620px;
+    }
+
+    /* --- What I help with --- */
+
+    .section-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 2rem;
+    }
+
+    .section-item h3 {
+      font-size: 1rem;
+      margin: 0 0 0.7rem;
+      color: var(--ink);
+    }
+
+    .section-item h3 span {
+      color: var(--clay);
+    }
+
+    .section-item p {
+      margin: 0;
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: var(--ink-soft);
+    }
+
+    /* --- How working together feels --- */
+
+    .section-how .section-inner {
+      max-width: 960px;
+    }
+
+    .steps {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 2.1rem;
+      counter-reset: step;
+    }
+
+    .steps li {
+      position: relative;
+      padding-top: 0.6rem;
+    }
+
+    .steps li::before {
+      counter-increment: step;
+      content: counter(step);
+      position: absolute;
+      top: 0;
+      left: 0;
+      font-size: 0.82rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--clay);
+    }
+
+    .steps h3 {
+      font-size: 1rem;
+      margin: 0 0 0.6rem;
+      padding-left: 1.8rem;
+      color: var(--ink);
+    }
+
+    .steps p {
+      margin: 0;
+      padding-left: 1.8rem;
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: var(--ink-soft);
+    }
+
+    /* --- Fit / Not fit --- */
+
+    .section-fit {
+      border-top: 1px solid rgba(21, 26, 35, 0.08);
+      border-bottom: 1px solid rgba(21, 26, 35, 0.06);
+      background: linear-gradient(
+        90deg,
+        rgba(186, 130, 118, 0.06),
+        transparent 40%,
+        transparent 60%,
+        rgba(37, 43, 56, 0.03)
+      );
+    }
+
+    .section-fit .section-inner {
+      padding-top: 0.8rem;
+    }
+
+    .section-fit-inner {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 2.8rem;
+    }
+
+    .fit-text {
+      font-size: 0.95rem;
+      line-height: 1.75;
+      color: var(--ink-soft);
+      margin: 0;
+    }
+
+    /* --- Contact --- */
+
+    .section-contact {
+      padding-bottom: 4.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .contact-block {
+      max-width: 620px;
+    }
+
+    .contact-text {
+      margin: 0 0 0.6rem;
+      font-size: 1rem;
+      color: var(--ink);
+    }
+
+    .contact-text a {
+      color: var(--ink);
+      text-decoration: underline;
+      text-underline-offset: 4px;
+      text-decoration-color: var(--clay);
+    }
+
+    .contact-help {
+      margin: 0;
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: var(--ink-soft);
+    }
+
+    /* --- Responsive --- */
+
+    @media (max-width: 900px) {
+      .section-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .steps {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .section-fit-inner {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 860px) {
+      .hero-inner {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 2.4rem;
+      }
+
+      .hero-aside {
+        max-width: 100%;
+      }
+
+      .site-tagline {
+        text-align: left;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page {
+        padding: 2.6rem 1.6rem 3.2rem;
+      }
+
+      header.site-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.4rem;
+      }
+
+      .hero-title {
+        font-size: 1.9rem;
+      }
+
+      .section {
+        padding: 2.8rem 0;
+      }
+
+      .section-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .steps {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
   </style>
 </head>
-
 <body>
 <div class="page">
   <div class="shell">
@@ -194,7 +501,9 @@
     <!-- HEADER -->
     <header class="site-header">
       <div class="site-name">SUZI NEVES</div>
-      <div class="site-tagline">Shopify, bookkeeping, and day-to-day operations in the same brain.</div>
+      <div class="site-tagline">
+        Shopify, bookkeeping, and day-to-day operations in the same brain.
+      </div>
     </header>
 
     <!-- HERO -->
@@ -204,14 +513,12 @@
         <div class="hero-main">
           <p class="hero-kicker">SHOPIFY · BOOKKEEPING · DAY-TO-DAY FLOW</p>
 
-          <!-- ⭐ YOUR APPROVED HERO LINE -->
           <h1 class="hero-title">
             Making sense of how your business runs and shaping it into systems that support your work.
           </h1>
 
-          <!-- SUBCOPY (unchanged unless you tell me otherwise) -->
           <p class="hero-sub">
-            Shopify, payouts, bookkeeping, inventory — all the parts that should align but often don’t. 
+            Shopify, payouts, bookkeeping, inventory — the parts that should align but often don’t.
             I keep them working together so your day-to-day is easier to manage.
           </p>
 
@@ -228,22 +535,134 @@
         <aside class="hero-aside">
           <div class="hero-aside-tag">What I’m usually helping with</div>
           <p class="hero-aside-text">
-            Not a full rebuild. Not a rescue mission. Just the parts that are nagging at you and eating time.
+            Not a full rebuild. Not a rescue mission. Just the parts that are nagging at you and
+            creating work you shouldn’t have to keep doing.
           </p>
           <ul class="hero-aside-list">
             <li>Shopify kept current and clean</li>
             <li>Bookkeeping that matches the actual activity</li>
             <li>Operational issues that need steady attention</li>
           </ul>
+          <div class="hero-aside-foot">Support, not judgment.</div>
         </aside>
 
       </div>
 
-      <div class="hero-underline"></div>
+      <div class="hero-underline" aria-hidden="true"></div>
     </section>
 
-    <!-- EVERYTHING BELOW THIS POINT REMAINS AS YOU LAST APPROVED -->
-    <!-- (Fit/Not Fit, What I Help With, How It Feels, Contact, etc.) -->
+    <!-- WHAT I HELP WITH -->
+    <section class="section section-what section-with-arc">
+      <div class="section-inner">
+        <h2 class="section-title">What I <span>help with</span></h2>
+        <p class="section-intro">
+          Most people reach out because Shopify, bookkeeping, or operations aren’t reflecting the same reality.
+          Nothing dramatic — just friction that adds unnecessary work.
+        </p>
+
+        <div class="section-grid">
+          <div class="section-item">
+            <h3><span>Shopify</span> that stays current</h3>
+            <p>
+              Products, collections, settings, and daily updates aligned with what’s happening right now —
+              accurate, consistent, and easier to maintain.
+            </p>
+          </div>
+
+          <div class="section-item">
+            <h3>Numbers that reflect <span>actual activity</span></h3>
+            <p>
+              Payouts, refunds, discounts, fees, and deposits matching so the financial side and Shopify
+              side stay aligned without extra effort or guesswork.
+            </p>
+          </div>
+
+          <div class="section-item">
+            <h3>Operational issues that need a <span>steady eye</span></h3>
+            <p>
+              Recurring glitches, mismatched data, duplicate behavior, or workflows that keep slowing things down.
+              I sort through what’s happening and get it running the way it should.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT FEELS -->
+    <section class="section section-how section-with-arc">
+      <div class="section-inner">
+        <h2 class="section-title">How working together feels</h2>
+        <p class="section-intro">
+          Straightforward, steady, and focused on making the work underneath easier to live with.
+        </p>
+
+        <div>
+          <p class="fit-text">
+            You tell me what’s happening — the parts that feel off, the areas you keep circling, the things
+            that aren’t matching what you expect. It can be brief. It doesn’t need to be organized.
+          </p>
+          <p class="fit-text">
+            I review the setup you already have: your Shopify configuration, your financial flow, how updates
+            are managed, and where the inconsistencies are showing up. The goal is to understand the system
+            as it is, so we can see what’s solid, what needs tightening, and what needs a fresh start.
+          </p>
+          <p class="fit-text">
+            From there, we make practical changes that hold — cleaning up the areas that create extra work,
+            tightening the parts that drift, and getting the workflow to operate the way it should.
+            It’s steady, detailed work that makes the day-to-day easier to manage.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FIT / NOT FIT -->
+    <section class="section section-fit">
+      <div class="section-inner section-fit-inner">
+        <div>
+          <h2 class="section-title">This is usually a fit if…</h2>
+          <p class="fit-text">
+            You have an active business with established operations, but Shopify, bookkeeping, and daily
+            workflows need to be aligned so everything reflects the same data and the same reality.
+            You want clear, consistent operations supported by someone who understands the details
+            without adding complexity.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="section-title">It’s probably not a fit if…</h2>
+          <p class="fit-text">
+            This isn’t the right match if you need a custom Shopify theme built from the ground up, if the
+            business requires urgent intervention, or if you’re looking for a full team or agency structure.
+            My work is steady, detailed operational support — focused on clarity and consistency, not
+            surface-level shortcuts or full-scale rebuilds.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section section-contact section-with-arc">
+      <div class="section-inner">
+        <h2 class="section-title">Tell me what’s going on</h2>
+        <p class="section-intro">
+          There’s no perfect way to explain it. A rough sketch of what’s bothering you
+          is enough to start.
+        </p>
+
+        <div class="contact-block">
+          <p class="contact-text">
+            <strong>Email:</strong>
+            <a href="mailto:suzi@radpurpose.com?subject=Shopify%20%2B%20operations">
+              suzi@radpurpose.com
+            </a>
+          </p>
+          <p class="contact-help">
+            A few lines about where things feel off, what you’re avoiding, or what
+            you’d love to feel easier is plenty.
+          </p>
+        </div>
+      </div>
+    </section>
 
   </div>
 </div>
